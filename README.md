@@ -30,7 +30,7 @@ MyCallable callable = new MyCallable();
 String callResult = circuit.invoke(callable);
 ```  
 
-### An example of configuring the circuit algorithm
+### An example configuring the circuit algorithm
 ```  
 DefaultCircuitBreakerAlgorithm algorithm = new DefaultCircuitBreakerAlgorithm(10L, 2L); 
 
@@ -40,7 +40,7 @@ MyCallable callable = new MyCallable();
 String callResult = circuit.invoke(callable);
 ```  
 
-## Creating your own algorithm
+## Creating your own circuit algorithm
 Implement interface CircuitBreakerAlgorithm.  See DefaultCircuitBreakerAlgorithm as an example.  
 
 You are required to implement the following methods:
