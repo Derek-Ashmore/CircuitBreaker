@@ -26,6 +26,8 @@ After a configurable time period, a call will be retried.  If that call is succe
 ```  
 Circuit<String> circuit = new Circuit<String>();  
 MyCallable callable = new MyCallable();  
+
+String callResult = circuit.invoke(callable);
 ```  
 
 ### An example of configuring the circuit algorithm
@@ -34,4 +36,6 @@ DefaultCircuitBreakerAlgorithm algorithm = new DefaultCircuitBreakerAlgorithm(10
 
 Circuit<String> circuit = new Circuit<String>(algorithm);  
 MyCallable callable = new MyCallable();  
+
+String callResult = circuit.invoke(callable);
 ```  
