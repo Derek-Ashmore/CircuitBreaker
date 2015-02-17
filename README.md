@@ -39,3 +39,15 @@ MyCallable callable = new MyCallable();
 
 String callResult = circuit.invoke(callable);
 ```  
+
+## Creating your own algorithm
+Implement interface CircuitBreakerAlgorithm.  See DefaultCircuitBreakerAlgorithm as an example.  
+
+You are required to implement the following methods:
+
+```  
+public boolean isExecutionAllowed();  
+public void reportExecutionFailure(Exception exceptionThrown);  
+public CircuitState getCircuitState();  
+
+```  
