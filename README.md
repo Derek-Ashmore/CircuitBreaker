@@ -3,6 +3,10 @@ Sample implementation of the circuit breaker pattern.  This circuit operates lik
 
 This circuit is meant for calls to external resources of some type.  The goal is to conserve resources by failing early.  If a remote resource is down, the circuit will prevent repeated executions to a resource which is known to be down.  At some point, executions will be allowed automatically.
 
+## System Requirements
+* Java JDK 5.0 or above (it was compiled under JDK 7 using 1.5 as the target source).
+* Include Apache Commons Lang version 3.0 or above
+
 ## Usage Instructions
 * Include the jar in your class path
 * Create a "callable" that calls your remote resource
