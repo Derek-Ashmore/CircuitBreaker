@@ -20,16 +20,20 @@ import org.apache.commons.lang3.Validate;
 /**
  * Implementation of the circuit breaker pattern.
  * @author D. Ashmore
- *
+ * @see CircuitBreakerAlgorithm
  * @param <T>
  */
 public class Circuit<T> {
 	
 	private CircuitBreakerAlgorithm circuitBreakerAlgorithm;
 	
+	/**
+	 * @see DefaultCircuitBreakerAlgorithm
+	 */
 	public Circuit()   {
 		this(new DefaultCircuitBreakerAlgorithm());
 	}
+	
 	public Circuit(CircuitBreakerAlgorithm algorithm)   {
 		Validate.notNull(algorithm, "Null algorithm not allowed.");
 		circuitBreakerAlgorithm = algorithm;
