@@ -6,7 +6,7 @@ This circuit is meant for calls to external resources of some type.  The goal is
 For more information, see http://martinfowler.com/bliki/CircuitBreaker.html
 
 ## System Requirements
-* Java JDK 5.0 or above (it was compiled under JDK 7 using 1.5 as the target source).
+* Java JDK 6.0 or above (it was compiled under JDK 7 using 1.6 as the target source).
 * Include Apache Commons Lang version 3.0 or above
 
 ## Usage Instructions
