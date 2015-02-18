@@ -41,6 +41,14 @@ public class CircuitTest {
 		
 		circuit = new Circuit<String>(algorithm);
 		Assert.assertTrue(algorithm == circuit.getCircuitBreakerAlgorithm());
+		
+		try {
+			circuit = new Circuit<String>(null);
+			Assert.fail("Null constructor should have failed.");
+		}
+		catch (Exception e) {
+			Assert.assertTrue(e.getMessage().contains("Null algorithm not allowed"));
+		}
 	}
 	
 	@Test

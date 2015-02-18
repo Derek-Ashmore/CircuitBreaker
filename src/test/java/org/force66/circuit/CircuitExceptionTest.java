@@ -22,6 +22,9 @@ public class CircuitExceptionTest {
 	public void test() {
 		CircuitException exception = new CircuitException("fubar");
 		Assert.assertTrue(exception.getMessage().contains("fubar"));
+		
+		exception = new CircuitException(new Exception("fubar"));
+		Assert.assertTrue(exception.getMessage().contains("fubar"));
 	}
 
 }

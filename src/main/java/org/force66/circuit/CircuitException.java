@@ -22,5 +22,10 @@ public class CircuitException extends ContextedRuntimeException {
 	public CircuitException(String message) {
 		super(message);
 	}
+	
+	public CircuitException(Throwable cause) {
+		super(cause);
+	}
+
 
 }

@@ -31,6 +31,7 @@ public class Circuit<T> {
 		this(new DefaultCircuitBreakerAlgorithm());
 	}
 	public Circuit(CircuitBreakerAlgorithm algorithm)   {
+		Validate.notNull(algorithm, "Null algorithm not allowed.");
 		circuitBreakerAlgorithm = algorithm;
 	}
 	
@@ -49,7 +50,9 @@ public class Circuit<T> {
 		}
 		catch (Exception e) {
 			circuitBreakerAlgorithm.reportExecutionFailure(e);
-			throw new RuntimeException(e);
+			throw new CircuitException(e)
+				.addContextValue("callable class", operation.getClass().getName())
+				.addContextValue("callable", operation.toString());
 		}
 
 	}
