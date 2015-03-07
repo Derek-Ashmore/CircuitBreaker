@@ -4,11 +4,11 @@
 	<groupId>org.force66</groupId>
 	<artifactId>CircuitBreaker</artifactId>
 	<version>1.0.0-rc1</version>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -131,6 +131,69 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<configuration>
+							<tasks>
+								<property environment="env" />
+								<fail if="${env.GPG_HOME}" message="GPG_HOME environment variable not defined." />
+								<mkdir dir="target/mavenrepo" />
+								<copy file="pom.xml"
+									tofile="target/mavenrepo/${project.name}-${project.version}.pom" />
+
+								<copy todir="target/mavenrepo">
+									<fileset dir="target" includes="*.jar" />
+								</copy>
+
+								<exec executable="cmd" dir="target/mavenrepo">
+									<env key="PATH" path="${env.GPG_HOME}" />
+									<arg line="/c" />
+									<arg line="gpg2.exe" />
+									<arg line="-ab" />
+									<arg
+										line="${project.build.directory}\mavenrepo\${project.name}-${project.version}.pom" />
+								</exec>
+								<exec executable="cmd" dir="target/mavenrepo">
+									<env key="PATH" path="${env.GPG_HOME}" />
+									<arg line="/c" />
+									<arg line="gpg2.exe" />
+									<arg line="-ab" />
+									<arg
+										line="${project.build.directory}\mavenrepo\${project.name}-${project.version}.jar" />
+								</exec>
+								<exec executable="cmd" dir="target/mavenrepo">
+									<env key="PATH" path="${env.GPG_HOME}" />
+									<arg line="/c" />
+									<arg line="gpg2.exe" />
+									<arg line="-ab" />
+									<arg
+										line="${project.build.directory}\mavenrepo\${project.name}-${project.version}-javadoc.jar" />
+								</exec>
+								<exec executable="cmd" dir="target/mavenrepo">
+									<env key="PATH" path="${env.GPG_HOME}" />
+									<arg line="/c" />
+									<arg line="gpg2.exe" />
+									<arg line="-ab" />
+									<arg
+										line="${project.build.directory}\mavenrepo\${project.name}-${project.version}-sources.jar" />
+								</exec>
+								<jar destfile="target/${project.name}-${project.version}-bundle.jar">
+									<fileset dir="target/mavenrepo" includes="*.jar" />
+									<fileset dir="target/mavenrepo" includes="*.pom" />
+									<fileset dir="target/mavenrepo" includes="*.asc" />
+								</jar>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -152,4 +215,17 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	<description>Implementation of the circuit breaker pattern.  This circuit operates like an electrical circuit in your house.  If something goes wrong, the circuit &quot;trips&quot; and power is cut to outlets connected to that circuit.</description>
+	<licenses>
+	  <license>
+	    <name>The Apache Software License, Version 2.0</name>
+	    <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+	  </license>
+	</licenses>
+	<url>https://github.com/Derek-Ashmore/CircuitBreaker</url>
+	<scm>
+		<url>https://github.com/Derek-Ashmore/CircuitBreaker.git</url>
+		<connection>scm:git:https://github.com/Derek-Ashmore/CircuitBreaker.git</connection>
+		<developerConnection>Derek C. Ashmore</developerConnection>
+	</scm>
 </project>

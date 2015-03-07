@@ -1,5 +1,5 @@
 # CircuitBreaker
-Sample implementation of the circuit breaker pattern.  This circuit operates like an electrical circuit in your house.  If something goes wrong, the circuit "trips" and power is cut to outlets connected to that circuit.
+Implementation of the circuit breaker pattern.  This circuit operates like an electrical circuit in your house.  If something goes wrong, the circuit "trips" and power is cut to outlets connected to that circuit.
 
 This circuit is meant for calls to external resources of some type.  The goal is to conserve resources by failing early.  If a remote resource is down, the circuit will prevent repeated executions to a resource which is known to be down.  At some point, executions will be allowed automatically.
 
