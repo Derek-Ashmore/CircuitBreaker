@@ -7,10 +7,21 @@ For more information, see http://martinfowler.com/bliki/CircuitBreaker.html
 
 ## System Requirements
 * Java JDK 6.0 or above (it was compiled under JDK 7 using 1.6 as the target source).
-* Include Apache Commons Lang version 3.0 or above
+* Apache Commons Lang version 3.0 or above
 
-## Usage Instructions
-* Include the jar in your class path
+## Installation Instructions  
+CircuitBreaker is easy to install whether you use maven or not.
+
+### Maven Users  
+Maven users can find dependency information [here](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22CircuitBreaker%22).
+
+### Non-Maven Users  
+Include the following jars in your class path:  
+* Download the CircuitBreaker jar from [Github](https://github.com/Derek-Ashmore/CircuitBreaker/releases) and put it in your class path.  
+* Insure Apache Commons Lang version 3.0 or above is in your class path.  
+
+## Usage Instructions  
+To use CircuitBreaker, follow these instructions:  
 * Create a "callable" that calls your remote resource
 * Use the circuit class to execute your callable.
 
