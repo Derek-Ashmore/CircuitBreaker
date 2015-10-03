@@ -13,8 +13,6 @@
  */
 package org.force66.circuit;
 
-import java.util.concurrent.Callable;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -79,19 +77,6 @@ public class CircuitTest {
 		}
 		Assert.assertTrue(exceptionThrown != null);
 		Assert.assertTrue(exceptionThrown.getMessage().contains(testMessage));
-	}
-	
-	static class MyCallable implements Callable<String>{
-		
-		boolean throwException=false;
-
-		public String call() throws Exception {
-			if (throwException) {
-				throw new Exception("crap");
-			}
-			return "stuff";
-		}
-		
 	}
 
 }

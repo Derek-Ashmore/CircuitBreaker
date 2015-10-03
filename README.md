@@ -62,3 +62,16 @@ public void reportExecutionFailure(Exception exceptionThrown);
 public CircuitState getCircuitState();  
 
 ```  
+
+## Using a circuit as a Callable
+CircuitBreaker provides a circuit implemented as a java.util.concurrent.Callable.  Example follows.
+```  
+DefaultCircuitBreakerAlgorithm algorithm = new DefaultCircuitBreakerAlgorithm(10L, 2L); 
+
+Circuit<String> circuit = new Circuit<String>(algorithm);  
+MyCallable myCallable = new MyCallable();  
+CallableCircuit<String> circuitCallable = new CallableCircuit<String>(circuit,
+				myCallable);
+
+String callResult = circuitCallable.call();
+```  
