@@ -75,3 +75,16 @@ CallableCircuit<String> circuitCallable = new CallableCircuit<String>(circuit,
 
 String callResult = circuitCallable.call();
 ```  
+
+You can provide partial functionality by combining CallableCircuit with [TaskMediator](https://github.com/Derek-Ashmore/TaskMediator).  Just replace the last line of the last example.
+```  
+DefaultCircuitBreakerAlgorithm algorithm = new DefaultCircuitBreakerAlgorithm(10L, 2L); 
+
+Circuit<String> circuit = new Circuit<String>(algorithm);  
+MyCallable myCallable = new MyCallable();  
+CallableCircuit<String> circuitCallable = new CallableCircuit<String>(circuit,
+				myCallable);
+
+TaskMediator<String> taskMediator = new TaskMediator<String>(DEFAULT_RESPONSE);
+String callResult = taskMediator.invoke(circuitCallable);
+```  
